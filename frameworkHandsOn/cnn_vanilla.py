@@ -1,9 +1,20 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import torch.optim as optim
 
 import torchvision
 import torchvision.transforms as transforms
+
+torch.set_printoptions(linewidth = 120)
+torch.set_grad_enabled(True)
+
+print(torch.__version__)
+print(torchvision.__version__)
+
+def get_num_correct(preds, labels):
+    return preds.argmax(dim=1).eq(labels).sum().item()
+
 
 class Network(nn.Module):
     def __init__(self):
